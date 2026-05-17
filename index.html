@@ -192,6 +192,8 @@ th{
     font-weight:bold;
 }
 
+/* KATEGORI */
+
 .matang{
     background:#e8f8f1;
     color:#27ae60;
@@ -207,15 +209,19 @@ th{
     color:#e74c3c;
 }
 
+/* STATUS */
+
 .acceptable{
-    background:#eafaf1;
-    color:#2ecc71;
+    background:#e8f8f1;
+    color:#27ae60;
 }
 
 .reject{
     background:#fdecea;
     color:#e74c3c;
 }
+
+/* UKURAN */
 
 .besar{
     background:#eef3ff;
@@ -239,6 +245,7 @@ th{
 
 .dark table th{
     background:#2b2b2b;
+    color:white;
 }
 
 .dark td{
@@ -274,11 +281,22 @@ th{
     </div>
 
     <div class="controls">
-        <button class="btn btn-sound" onclick="enableSound()">🔊 Sound</button>
 
-        <button class="btn btn-dark" onclick="toggleDark()">🌙 Dark</button>
+        <button class="btn btn-sound"
+        onclick="enableSound()">
+        🔊 Sound
+        </button>
 
-        <button class="btn btn-download" onclick="downloadCSV()">⬇ Download CSV</button>
+        <button class="btn btn-dark"
+        onclick="toggleDark()">
+        🌙 Dark
+        </button>
+
+        <button class="btn btn-download"
+        onclick="downloadCSV()">
+        ⬇ Download CSV
+        </button>
+
     </div>
 
 </div>
@@ -286,12 +304,16 @@ th{
 <!-- WELCOME -->
 
 <div class="welcome">
-    <h2>Welcome To Our Tomato Quality Monitoring System 🍅</h2>
+
+    <h2>
+        Welcome To Our Tomato Quality Monitoring System 🍅
+    </h2>
 
     <p>
-        This dashboard displays realtime tomato quality monitoring data
-        connected directly with Firebase Database.
+        This dashboard displays realtime tomato quality
+        monitoring data connected directly with Firebase.
     </p>
+
 </div>
 
 <!-- SUMMARY -->
@@ -508,7 +530,7 @@ ${item.kualitas}\n`;
 }
 
 /* =========================
-   LOAD DATA REALTIME
+   LOAD REALTIME DATA
 ========================= */
 
 let lastCount = 0;
@@ -532,14 +554,14 @@ db.ref("tomat").on("value", snapshot => {
     .slice(-20)
     .forEach((item,i)=>{
 
+        const ukuran =
+        (item.kategori || "").toLowerCase();
+
         const kategori =
         (item.status || "").toLowerCase();
 
         const status =
         (item.kualitas || "").toLowerCase();
-
-        const ukuran =
-        (item.kategori || "").toLowerCase();
 
         if(kategori === "matang") matang++;
         else if(kategori === "mentah") mentah++;
@@ -558,23 +580,23 @@ db.ref("tomat").on("value", snapshot => {
             </td>
 
             <td>
-            <span class="badge ${ukuran}">
-            ${ukuran}
-            </span>
+                <span class="badge ${ukuran}">
+                ${ukuran}
+                </span>
             </td>
 
             <td>${item.akurasi}%</td>
 
             <td>
-            <span class="badge ${kategori}">
-            ${kategori}
-            </span>
+                <span class="badge ${kategori}">
+                ${kategori}
+                </span>
             </td>
 
             <td>
-            <span class="badge ${status}">
-            ${status}
-            </span>
+                <span class="badge ${status}">
+                ${status}
+                </span>
             </td>
 
         </tr>
