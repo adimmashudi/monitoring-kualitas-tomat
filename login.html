@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomato Monitoring Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=1400&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+}
+
+/* floating tomato */
+.tomato{
+    position:absolute;
+    font-size:40px;
+    opacity:0.12;
+    animation:float 6s infinite ease-in-out;
+}
+
+.tomato:nth-child(1){
+    top:10%;
+    left:10%;
+}
+
+.tomato:nth-child(2){
+    top:70%;
+    left:15%;
+    animation-delay:1s;
+}
+
+.tomato:nth-child(3){
+    top:20%;
+    right:15%;
+    animation-delay:2s;
+}
+
+.tomato:nth-child(4){
+    bottom:10%;
+    right:10%;
+    animation-delay:3s;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.login-container{
+    width:430px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:28px;
+    padding:45px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+    color:white;
+    position:relative;
+    z-index:1;
+}
+
+.logo{
+    text-align:center;
+    font-size:80px;
+    margin-bottom:10px;
+}
+
+.title{
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:14px;
+    color:#f1f1f1;
+    margin-bottom:35px;
+    line-height:1.6;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    padding:14px 16px;
+    border:none;
+    border-radius:14px;
+    outline:none;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    font-size:15px;
+    border:1px solid rgba(255,255,255,0.2);
+    transition:0.3s;
+}
+
+input::placeholder{
+    color:#ddd;
+}
+
+input:focus{
+    border:1px solid #ff7675;
+    background:rgba(255,255,255,0.2);
+    box-shadow:0 0 12px rgba(255,118,117,0.4);
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,#ff6b6b,#ee5253);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+
+#error{
+    text-align:center;
+    margin-top:15px;
+    color:#ffeaa7;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    font-size:12px;
+    color:#ddd;
+    line-height:1.7;
+}
+
+.univ{
+    margin-top:10px;
+    font-size:13px;
+    font-weight:600;
+    color:#fff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="tomato">🍅</div>
+<div class="tomato">🍅</div>
+<div class="tomato">🍅</div>
+<div class="tomato">🍅</div>
+
+<div class="login-container">
+
+    <div class="logo">🍅</div>
+
+    <div class="title">
+        Tomato Monitoring
+    </div>
+
+    <div class="subtitle">
+        Welcome to Tomato Quality Monitoring System <br>
+        Real-Time Smart Farming Dashboard
+    </div>
+
+    <div class="input-group">
+        <label>Username</label>
+        <input type="text"
+        id="username"
+        placeholder="Enter your username">
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password"
+        id="password"
+        placeholder="Enter your password">
+    </div>
+
+    <button onclick="login()">
+        Login Dashboard
+    </button>
+
+    <div id="error"></div>
+
+    <div class="footer">
+        AI-Based Tomato Classification System
+
+        <div class="univ">
+            Faculty of Engineering
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+function login(){
+
+    const username =
+    document.getElementById('username').value;
+
+    const password =
+    document.getElementById('password').value;
+
+    if(username === 'admin' && password === '12345'){
+
+        localStorage.setItem('login','true');
+
+        window.location.href = 'index.html';
+    }
+    else{
+
+        document.getElementById('error')
+        .innerText = 'Username atau password salah!';
+    }
+}
+
+</script>
+
+</body>
+</html>
